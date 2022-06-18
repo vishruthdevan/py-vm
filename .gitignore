@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 pypy3.9-v7.3.9-src/
+rpython
+rpy
