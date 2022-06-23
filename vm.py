@@ -13,22 +13,40 @@ Instructions:
 
 '''
 
-def load_program(argv):
-    print "program loaded"
+OP_EOP = "00"
+OP_EOI = "01"
+OP_PUSH = "02"
+OP_POP = "03"
+OP_PRINT = "04"
+OP_ADD = "05"
+OP_SUB = "06"
 
-def execute_program():
+
+def load_program(argv):
+    f = open(argv)
+    lines = f.read().replace("\n", " ")
+    lines = lines.split(" ")
+    f.close()
+    return lines
+
+
+def execute_program(lines):
     print "program executed"
 
+
 def run_program(argv):
-    load_program(argv)
-    execute_program()
+    lines = load_program(argv)
+    execute_program(lines)
+
 
 def main(argv):
     run_program(argv[1])
     return 0
 
+
 def target(*args):
     return main, None
+
 
 if __name__ == "__main__":
     main(sys.argv)
