@@ -22,6 +22,30 @@ OP_ADD = "05"
 OP_SUB = "06"
 
 
+def do_eoi():
+    pass
+
+
+def do_push():
+    pass
+
+
+def do_pop():
+    pass
+
+
+def do_print():
+    pass
+
+
+def do_add():
+    pass
+
+
+def do_sub():
+    pass
+
+
 def load_program(argv):
     f = open(argv)
     lines = f.read().replace("\n", " ")
@@ -31,7 +55,25 @@ def load_program(argv):
 
 
 def execute_program(lines):
-    print "program executed"
+    loop = 1
+    i = 0
+    while loop == 1:
+        instruction = lines[i]
+        if instruction == OP_EOP:
+            loop = 0
+        elif instruction == OP_EOI:
+            do_eoi()
+        elif instruction == OP_PUSH:
+            do_push()
+        elif instruction == OP_POP:
+            do_pop()
+        elif instruction == OP_PRINT:
+            do_print()
+        elif instruction == OP_ADD:
+            do_add()
+        elif instruction == OP_SUB:
+            do_sub()
+        i += 1
 
 
 def run_program(argv):
