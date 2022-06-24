@@ -41,11 +41,17 @@ def do_print():
 
 
 def do_add():
-    pass
+    s = stack[-1] + stack[-2]
+    stack.pop()
+    stack.pop()
+    stack.append(s)
 
 
 def do_sub():
-    pass
+    s = stack[-1] - stack[-2]
+    stack.pop()
+    stack.pop()
+    stack.append(s)
 
 
 def load_program(argv):
