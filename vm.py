@@ -13,6 +13,8 @@ Instructions:
 
 '''
 
+stack = []
+
 OP_EOP = "00"
 OP_EOI = "01"
 OP_PUSH = "02"
@@ -26,16 +28,16 @@ def do_eoi():
     pass
 
 
-def do_push():
-    pass
+def do_push(i, l):
+    stack.append(int(l[i+1], 16))
 
 
 def do_pop():
-    pass
+    stack.pop()
 
 
 def do_print():
-    pass
+    print stack[-1]
 
 
 def do_add():
@@ -54,17 +56,15 @@ def load_program(argv):
     return lines
 
 
-def execute_program(lines):
+def execute_program(l):
     loop = 1
     i = 0
     while loop == 1:
-        instruction = lines[i]
+        instruction = l[i]
         if instruction == OP_EOP:
             loop = 0
-        elif instruction == OP_EOI:
-            do_eoi()
         elif instruction == OP_PUSH:
-            do_push()
+            do_push(i, l)
         elif instruction == OP_POP:
             do_pop()
         elif instruction == OP_PRINT:
