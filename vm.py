@@ -22,6 +22,8 @@ OP_POP = "03"
 OP_PRINT = "04"
 OP_ADD = "05"
 OP_SUB = "06"
+OP_MUL = "07"
+OP_DIV = "08"
 
 
 def do_eoi():
@@ -36,19 +38,33 @@ def do_pop():
     stack.pop()
 
 
-def do_print():
+def do_print(stack):
     print stack[-1]
 
 
-def do_add():
+def do_add(stack):
     s = stack[-1] + stack[-2]
     stack.pop()
     stack.pop()
     stack.append(s)
 
 
-def do_sub():
+def do_sub(stack):
     s = stack[-1] - stack[-2]
+    stack.pop()
+    stack.pop()
+    stack.append(s)
+
+
+def do_mul(stack):
+    s = stack[-1] * stack[-2]
+    stack.pop()
+    stack.pop()
+    stack.append(s)
+
+
+def do_div(stack):
+    s = stack[-2] / stack[-1]
     stack.pop()
     stack.pop()
     stack.append(s)
@@ -74,11 +90,15 @@ def execute_program(l):
         elif instruction == OP_POP:
             do_pop()
         elif instruction == OP_PRINT:
-            do_print()
+            do_print(stack)
         elif instruction == OP_ADD:
-            do_add()
+            do_add(stack)
         elif instruction == OP_SUB:
-            do_sub()
+            do_sub(stack)
+        elif instruction == OP_MUL:
+            do_mul(stack)
+        elif instruction == OP_DIV:
+            do_div(stack)
         i += 1
 
 
